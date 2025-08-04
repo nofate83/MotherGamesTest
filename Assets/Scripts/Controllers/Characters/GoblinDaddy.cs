@@ -35,7 +35,6 @@ namespace Assets.Scripts.Controllers.Characters
 
         protected override void Die()
         {
-            Debug.Log("Die in Daddy");
             _isDead = true;
             Died?.Invoke(this);
             _particleSystem.transform.position = transform.position;
