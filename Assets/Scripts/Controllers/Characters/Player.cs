@@ -126,8 +126,8 @@ namespace Assets.Scripts.Controllers
             transform.position = Vector3.zero;
             Camera.main.transform.position = transform.position + new Vector3(0, 16, -16);
         }
-        
-        private void FixedUpdate()
+
+        private void Update()
         {
             _targets = SceneController.EnemiesOnfield.Where(x => x.DistanceToPlayer < _attackRange && !x.IsDead).ToArray();
             GlobalActions.HaveTargets?.Invoke(_targets.Length > 0);
@@ -141,7 +141,10 @@ namespace Assets.Scripts.Controllers
             {
                 GlobalActions.AttackEst?.Invoke((Time.time - _lastAttackTime) / _attackSpeed);
             }
+        }
 
+        private void FixedUpdate()
+        {
             //have a sense to add rigidbody to player object for more complicated and flexible decisions
             if (_moveDirection != Vector3.zero)
             {
